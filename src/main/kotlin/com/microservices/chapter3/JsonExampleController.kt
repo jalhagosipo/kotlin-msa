@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class JsonExampleController {
     @GetMapping("/json")
-    fun getJson() = SimpleObject("hi", "kotlin")
+    fun getJson() = ComplexObject(object1 = SimpleObject("more", "complex"))
 }
