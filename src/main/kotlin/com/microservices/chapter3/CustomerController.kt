@@ -7,27 +7,28 @@ import java.util.concurrent.ConcurrentHashMap
 @RestController
 class CustomerController {
     @Autowired
-    lateinit var customers: ConcurrentHashMap<Int, Customer>
+    private lateinit var customerService: CustomerService
 
     @GetMapping("/customer/{id}")
-    fun getCustomer(@PathVariable id: Int) = customers[id]
+    fun getCustomer(@PathVariable id: Int) = customerService.getCustomer(id)
 
     @GetMapping("/customers")
-    fun getCustomers(@RequestParam(required = false, defaultValue = "") nameFilter: String) = customers
-        .filter { it.value.name.contains(nameFilter, true) }
-        .map{ it.value }
+    fun getCustomers(@RequestParam(required = false, defaultValue = "") nameFilter: String) {
+        customerService.searchCustomers(nameFilter)
+    }
 
     @PostMapping("/customer")
     fun createCustomer(@RequestBody customer: Customer) {
-        customers[customer.id] = customer
+        customerService.createCustomer(customer)
     }
 
     @DeleteMapping("/customer/{id}")
-    fun deleteCustomer(@PathVariable id: Int) = customers.remove(id)
+    fun deleteCustomer(@PathVariable id: Int) {
+        customerService.deleteCustomer(id)
+    }
 
     @PutMapping("/customer/{id}")
     fun updateCustomer(@PathVariable id: Int, @RequestBody customer: Customer) {
-        customers.remove(id)
-        customers[customer.id] = customer
+        customerService.updateCustomer(id, customer)
     }
 }
