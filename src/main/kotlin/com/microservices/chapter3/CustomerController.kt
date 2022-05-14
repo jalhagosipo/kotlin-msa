@@ -16,4 +16,12 @@ class CustomerController {
     fun getCustomers(@RequestParam(required = false, defaultValue = "") nameFilter: String) = customers
         .filter { it.value.name.contains(nameFilter, true) }
         .map{ it.value }
+
+    @RequestMapping(value = ["/customer"], method = [RequestMethod.POST])
+    fun createCustomer(@RequestBody customer: Customer) {
+        customers[customer.id] = customer
+    }
+
+    @RequestMapping(value = ["/customer/{id}"], method = [RequestMethod.DELETE])
+    fun deleteCustomer(@PathVariable id: Int) = customers.remove(id)
 }
