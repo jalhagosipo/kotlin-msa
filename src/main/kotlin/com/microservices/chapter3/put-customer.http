@@ -1,0 +1,11 @@
+#update 4, delete 2
+PUT http://localhost:8080/customer/2
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+  "id": "4",
+  "name": "Update Customer"
+}
+
+
