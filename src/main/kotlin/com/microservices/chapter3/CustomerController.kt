@@ -19,9 +19,7 @@ class CustomerController {
 
 
     @GetMapping("/customers")
-    fun getCustomers(@RequestParam(required = false, defaultValue = "") nameFilter: String) {
-        customerService.searchCustomers(nameFilter)
-    }
+    fun getCustomers(@RequestParam(required = false, defaultValue = "") nameFilter: String) = customerService.searchCustomers(nameFilter)
 
     @PostMapping("/customer")
     fun createCustomer(@RequestBody customer: Customer): ResponseEntity<Unit?> {
