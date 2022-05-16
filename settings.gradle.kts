@@ -1,1 +1,3 @@
-rootProject.name = "chapter2"
+rootProject.name = "chapters"
+include("chapter2")
+include("chapter3")
