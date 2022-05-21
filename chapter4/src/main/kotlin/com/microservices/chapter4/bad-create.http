@@ -1,4 +1,4 @@
-POST http://localhost:8080/customer
+POST http://localhost:8080/functional/customer/
 Content-Type: application/json
 
 {
@@ -7,7 +7,7 @@ Content-Type: application/json
   "telephone": {
     "countryCode": "+44",
     "telephoneNumber": "7123456789"
-  }
+  }"bad json"
 }
 
 

@@ -32,4 +32,7 @@ class CustomerHandler(
             .flatMap {
                 created(URI.create("/functional/customer/${it.id}")).build()
             }
+            .onErrorResume {
+                badRequest().body(fromValue(ErrorResponse("error creating customer", it.message ?: "error")))
+            }
 }
