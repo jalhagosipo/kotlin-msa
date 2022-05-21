@@ -17,7 +17,7 @@ class CusotomerRouter(
                 POST("/", customerHandler::get)
             }
             "/customers".nest {
-                GET("/", customerHandler::get)
+                GET("/", customerHandler::search)
             }
         }
     }

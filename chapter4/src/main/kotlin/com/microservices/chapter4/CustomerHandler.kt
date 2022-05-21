@@ -17,9 +17,11 @@ class CustomerHandler(
         return ok().body(
             customerService.getCustomer(serverRequest.pathVariable("id").toInt())
                 .flatMap { ok().body(fromValue(it)) }
-//                .switchIfEmpty(notFound().build())
                 .switchIfEmpty(status(HttpStatus.NOT_FOUND).build())
 
         )
     }
+
+    fun search(serverRequest: ServerRequest) =
+        ok().body(customerService.searchCustomers(serverRequest.queryParam("nameFilter").orElse("")), Customer::class.java)
 }
