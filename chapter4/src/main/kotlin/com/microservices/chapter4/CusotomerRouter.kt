@@ -14,7 +14,7 @@ class CusotomerRouter(
         "/functional".nest {
             "/customer".nest {
                 GET("/{id}", customerHandler::get)
-                POST("/", customerHandler::get)
+                POST("/", customerHandler::create)
             }
             "/customers".nest {
                 GET("/", customerHandler::search)
