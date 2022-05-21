@@ -1,15 +1,25 @@
 package com.microservices.chapter4
 
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
+import org.springframework.web.reactive.function.BodyInserters.fromValue
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
-import org.springframework.web.reactive.function.server.ServerResponse.ok
+import org.springframework.web.reactive.function.server.ServerResponse.*
+import org.springframework.web.reactive.function.server.body
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.toMono
 
 @Component
-class CustomerHandler {
+class CustomerHandler(
+    val customerService: CustomerService
+) {
     fun get(serverRequest: ServerRequest): Mono<ServerResponse> {
-        return ok().body(Customer(1, "functional web").toMono(), Customer::class.java)
+        return ok().body(
+            customerService.getCustomer(serverRequest.pathVariable("id").toInt())
+                .flatMap { ok().body(fromValue(it)) }
+//                .switchIfEmpty(notFound().build())
+                .switchIfEmpty(status(HttpStatus.NOT_FOUND).build())
+
+        )
     }
 }
