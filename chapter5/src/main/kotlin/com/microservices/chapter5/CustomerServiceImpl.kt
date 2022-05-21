@@ -17,4 +17,8 @@ class CustomerServiceImpl : CustomerService {
     override fun createCustomer(customer: Mono<Customer>): Mono<Customer> {
         return customerRepository.create(customer)
     }
+
+    override fun deleteCustomer(id: Int): Mono<Boolean> {
+        return customerRepository.deleteById(id).map { it.deletedCount > 0 }
+    }
 }
