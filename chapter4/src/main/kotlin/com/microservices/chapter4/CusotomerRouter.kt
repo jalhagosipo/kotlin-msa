@@ -13,8 +13,11 @@ class CusotomerRouter(
     fun customerRoutes(): RouterFunction<*> = router {
         "/functional".nest {
             "/customer".nest {
-//                GET("/") { customerHandler.get(it) }
                 GET("/{id}", customerHandler::get)
+                POST("/", customerHandler::get)
+            }
+            "/customers".nest {
+                GET("/", customerHandler::get)
             }
         }
     }
