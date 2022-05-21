@@ -12,6 +12,7 @@ class CustomerRouter(
     fun customerRoutes() = router {
         "/customer".nest {
             GET("/{id}", customerHanlder::get)
+            POST("/", customerHanlder::create)
         }
     }
 }

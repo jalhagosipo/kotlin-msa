@@ -1,0 +1,14 @@
+POST http://localhost:8080/customer/
+Content-Type: application/json
+
+{
+  "id": 18,
+  "name": "New Customer",
+  "telephone": {
+    "countryCode": "+44",
+    "telephoneNumber": "7123456789"
+  }
+}
+
+
+
