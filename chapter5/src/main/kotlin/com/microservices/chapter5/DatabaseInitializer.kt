@@ -8,6 +8,9 @@ import javax.annotation.PostConstruct
 @Component
 class DatabaseInitializer {
     @Autowired
+    lateinit var customerRepository: CustomerRepository
+
+    @Autowired
     lateinit var mongoOperations: ReactiveMongoOperations
 
     @PostConstruct
@@ -19,6 +22,10 @@ class DatabaseInitializer {
                 }
             } else {
                 println("Customers collections already exist")
+                customerRepository.save(Customer(1, "spring"))
+                    .subscribe {
+                        println("Default customers created")
+                    }
             }
         }
     }
