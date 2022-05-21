@@ -1,6 +1,7 @@
 package com.microservices.chapter5
 
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
+import org.springframework.data.mongodb.core.find
 import org.springframework.data.mongodb.core.findById
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.isEqualTo
@@ -31,4 +32,8 @@ class CustomerRepository(
 
     fun create(customer: Mono<Customer>) = template.save(customer)
     fun findById(id: Int) = template.findById<Customer>(id)
-    fun deleteById(id: Int) = template.remove<Customer>(Query(where("_id").isEqualTo(id))) }
+    fun deleteById(id: Int) = template.remove<Customer>(Query(where("_id").isEqualTo(id)))
+    fun findCustomer(nameFilter: String) = template.find<Customer>(
+        Query(where("name").regex(".*$nameFilter.*", "i"))
+    )
+}

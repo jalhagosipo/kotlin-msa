@@ -15,5 +15,8 @@ class CustomerRouter(
             POST("/", customerHanlder::create)
             DELETE("/{id}", customerHanlder::delete)
         }
+        "/customers".nest {
+            GET("/", customerHanlder::search)
+        }
     }
 }
