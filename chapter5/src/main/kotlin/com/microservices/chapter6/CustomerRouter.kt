@@ -1,4 +1,4 @@
-package com.microservices.chapter5
+package com.microservices.chapter6
 
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component

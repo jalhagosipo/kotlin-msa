@@ -1,10 +1,9 @@
-package com.microservices.chapter5
+package com.microservices.chapter6
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import reactor.kotlin.core.publisher.toMono
 
 @Service
 class CustomerServiceImpl : CustomerService {

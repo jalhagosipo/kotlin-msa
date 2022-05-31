@@ -1,4 +1,4 @@
-package com.microservices.chapter5
+package com.microservices.chapter6
 
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component

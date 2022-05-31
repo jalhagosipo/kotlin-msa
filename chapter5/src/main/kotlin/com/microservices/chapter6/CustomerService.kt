@@ -1,4 +1,4 @@
-package com.microservices.chapter5
+package com.microservices.chapter6
 
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono

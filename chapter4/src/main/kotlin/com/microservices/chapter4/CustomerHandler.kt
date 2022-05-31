@@ -20,7 +20,6 @@ class CustomerHandler(
             customerService.getCustomer(serverRequest.pathVariable("id").toInt())
                 .flatMap { ok().body(fromValue(it)) }
                 .switchIfEmpty(status(HttpStatus.NOT_FOUND).build())
-
         )
     }
 
