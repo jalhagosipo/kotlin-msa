@@ -1,2 +1,3 @@
-FROM openjdk:8-jdk-alpine
-ENTRYPOINT ["java", "-version"]
+FROM openjdk:11-jre
+ADD build/libs/*.jar microservice.jar
+ENTRYPOINT ["java", "-jar", "microservice.jar"]
