@@ -11,4 +11,4 @@ eureka:
       enabled: true
 
 server:
-  port: 0
+  port: 9000
