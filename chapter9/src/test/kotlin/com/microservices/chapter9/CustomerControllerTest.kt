@@ -1,6 +1,9 @@
 package com.microservices.chapter9
 
+
 import org.junit.jupiter.api.Test
+import org.mockito.BDDMockito.given
+import org.mockito.BDDMockito.reset
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -36,6 +39,9 @@ class CustomerControllerTest {
 
     @Test
     fun `we should GET a list of customers`() {
+        given(customerService.getAllCustomers())
+                .willReturn(listOf(Customer(1, "test"), Customer(2, "mocks")))
+
         mockMvc.perform(get("/customers"))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("\$").isArray)
@@ -46,5 +52,7 @@ class CustomerControllerTest {
                 .andExpect(jsonPath("\$[2].id").value(3))
                 .andExpect(jsonPath("\$[2].name").value("Microservice"))
                 .andDo(print())
+
+        reset(customerService)
     }
 }
